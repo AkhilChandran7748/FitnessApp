@@ -1,0 +1,6 @@
+import React from "react";
+import WithHeader from "../common/WithHeaderHoc";
+const GuestDashboard = () => {
+return(<></>)
+}
+export default WithHeader(GuestDashboard)

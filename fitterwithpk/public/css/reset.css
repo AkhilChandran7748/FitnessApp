@@ -1,0 +1,334 @@
+.bg-white {
+    color: white;
+}
+
+.margin-t-sm {
+    margin-top: 5px;
+}
+
+.min-h-40p {
+    min-height: 40px;
+}
+
+.p-button {
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    font-size: .8rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+
+.p-button.p-button-sm {
+    font-size: 0.75rem;
+    padding: 0.65625rem 1.09375rem;
+}
+
+.p-inputtext.p-inputtext-sm {
+    font-size: 0.75rem;
+    padding: 0.65625rem 0.65625rem;
+}
+
+button:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+}
+
+.margin-b-md {
+    margin-bottom: 10px !important;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.padding-r-sm {
+    padding-right: 5px;
+}
+
+.p-inputtext-sm .p-inputtext {
+    font-size: 0.75rem;
+    padding: 0.65625rem 0.65625rem;
+}
+
+.content {
+    padding: 10px;
+}
+
+.margin-r-10 {
+    margin-right: 10px;
+}
+
+.margin-l-10 {
+    margin-left: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(78, 219, 23);
+}
+
+.grey {
+    color: #555555
+}
+
+.blue {
+    color: blue
+}
+
+.header {
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 10px;
+}
+
+.padding-10p {
+    padding: 10px;
+}
+
+.padding-20p {
+    padding: 20px;
+}
+
+.padding-30p {
+    padding: 30px;
+}
+
+.padding-t-5p {
+    padding-top: 5px;
+    ;
+}
+
+.padding-t-10p {
+    padding-top: 10px;
+    ;
+}
+
+.padding-t-15p {
+    padding-top: 15px;
+    ;
+}
+
+.padding-t-20p {
+    padding-top: 20px;
+    ;
+}
+
+.padding-t-25p {
+    padding-top: 25px;
+    ;
+}
+
+.padding-t-30p {
+    padding-top: 30px;
+    ;
+}
+
+.padding-l-20p {
+    padding-left: 20px;
+    ;
+}
+
+.padding-b-10p {
+    padding-bottom: 10px;
+}
+
+.padding-b-20p {
+    padding-bottom: 20px;
+}
+
+.padding-b-30p {
+    padding-bottom: 30px;
+}
+
+.padding-b-50p {
+    padding-bottom: 50px;
+}
+
+.padding-b-100p {
+    padding-bottom: 100px;
+}
+
+.p-inputtext {
+    margin: 0;
+}
+
+.p-component,
+.p-component * {
+    box-sizing: border-box;
+}
+
+.p-inputtext {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: .7rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 6px;
+}
+
+.p-component {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: .7rem;
+    font-weight: normal;
+}
+
+.small-button {
+    font-size: .8rem !important;
+}
+
+.margin-l-5p {
+    margin-left: 5px;
+}
+
+.margin-l-10p {
+    margin-left: 10px;
+}
+
+.m-width-220p {
+    min-width: 220px;
+}
+
+.action-icon {
+    font-size: 1.5rem;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #3232b7;
+}
+
+.row-content {
+    justify-content: space-between;
+}
+
+.p-dialog .p-dialog-header {
+    padding: 1rem;
+}
+
+.add-student .p-splitter-panel-nested {
+    display: block;
+}
+
+.margin-t-20p {
+    margin-top: 20px;
+}
+
+.margin-t-30p {
+    margin-top: 30px;
+}
+
+.data-manager .p-float-label {
+    display: inline;
+}
+
+.width-350p {
+    width: 350px;
+}
+
+.width-400p {
+    width: 400px;
+}
+
+.width-500p {
+    width: 500px;
+}
+
+.width-600p {
+    width: 500px;
+}
+
+.red-bg {
+    background-color: red;
+}
+
+.green-bg {
+    background-color: green;
+}
+
+.yellow-bg {
+    background-color: yellow;
+}
+
+.blue-bg {
+    background-color: rgb(88, 88, 201);
+}
+
+.purple-bg {
+    background-color: purple;
+}
+
+.cyan-bg {
+    background-color: cyan;
+}
+
+.brown-bg {
+    background-color: brown;
+}
+
+.black-bg {
+    background-color: black;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.calender-w {
+    width: 222px;
+}
+
+.date-button {
+    text-align: center;
+    width: 100%;
+    font-size: 10px;
+    background: yellow;
+    color: red;
+    /* padding-bottom: 3px; */
+    border-radius: 10px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.img-viewer {
+    max-width: 400px;
+    max-width: 400px;
+}
+
+.img-icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+
+}
+
+.scoreInput {
+    max-width: 45px;
+    margin-right: 5px;
+}
+
+.f-10p {
+    font-size: 10px !important;
+}
+
+.color-badge {
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.toggle input {
+    color: red !important;
+}
+
+.block-display {
+    display: block;
+}
