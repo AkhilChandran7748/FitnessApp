@@ -10,3 +10,13 @@ export const login = params => {
         return response;
     });
 };
+
+export const registerUser = params => {
+    return httpCall({
+        url: API_URL.REGISTRATION,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};

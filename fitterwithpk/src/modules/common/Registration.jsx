@@ -8,19 +8,14 @@ import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputTextarea } from "primereact/inputtextarea";
 import { Password } from 'primereact/password';
-const Register = ({ reload }) => {
+import { RENDER_URL } from "../../Utils/Urls";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "./LoginServices";
+const Register = ({ tabChange }) => {
     const password = useRef({});
-    const [visible, setVisible] = useState(false);
-    const FooterContent = () => (
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <Button label="Submit" className="small-button margin-r-10" severity="success" />
-            <Button label="Cancel" className="small-button" severity="secondary" onClick={() => setVisible(false)} autoFocus />
-        </div>
-    );
-
 
     const defaultValues = {
-        aps_status: 2
+
     };
 
     const {
@@ -32,20 +27,38 @@ const Register = ({ reload }) => {
         register,
         setValue,
         watch,
+        setError
     } = useForm({ defaultValues });
+
+    const navigate = useNavigate();
     password.current = watch("password", "");
     const onSubmit = (data) => {
-        console.log(data);
+        if (data.password !== data.repassword) {
+            setError('repassword')
+            setError("repassword", {
+                type: "manual",
+                message: "Password doest't match!!!",
+            })
+            return;
+        }
+        let reqParams = {
+            "EmailID": data.email,
+            "Password": data.password,
+            "FirstName": data.name,
+            "LastName": "",
+            "Mobile": data.mobile,
+            "IsUser": 1,
+            "LoginType": "normal"
+        }
 
-        // addLead(data).then((res) => {
-        //     if(res.data.success){
-        //         reset();
-        //         reload('Lead added successfully');
-        //         setVisible(false)  
-        //     }
-        //             })
+        registerUser(reqParams).then((res) => {
+            if (res.data.success) {
+                reset();
+                tabChange(0)
+            }
+        })
 
-        // reset();
+        reset();
     };
 
     const getFormErrorMessage = (name) => {
@@ -214,7 +227,7 @@ const Register = ({ reload }) => {
                         />
                         <Controller
                             name="repassword"
-                            control={control}                            
+                            control={control}
                             render={({ field, fieldState }) => (
                                 <div className="margin-b-md">
                                     <span>
@@ -237,7 +250,7 @@ const Register = ({ reload }) => {
             </Splitter>
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
                 <Button label="Submit" className="small-button margin-r-10" severity="success" />
-                <Button label="Cancel" className="small-button" severity="secondary" onClick={() => setVisible(false)} autoFocus />
+                <Button label="Cancel" className="small-button" severity="secondary" onClick={() => reset()} autoFocus />
             </div>
         </form>
     )

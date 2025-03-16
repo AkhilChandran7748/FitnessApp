@@ -4,6 +4,8 @@ import React, { lazy, Suspense, } from "react";
 // import RootRouteGuard from "./RootRouteGuard"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../modules/common/GuestHome";
+import { RENDER_URL } from "../Utils/Urls";
+import RootRouteGuard from "./RootRouteGuard";
 // const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 // const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
 // const Services = lazy(() => import("../modules/guest/Services"))
@@ -11,7 +13,7 @@ import Home from "../modules/common/GuestHome";
 // const Countries = lazy(() => import("../modules/guest/Countries"))
 // const ReferalProgram = lazy(() => import("../modules/guest/ReferalProgram"))
 // const Contact = lazy(() => import("../modules/guest/Contact"))
-// const AdminDashboard = lazy(() => import("../modules/admin/Admin"))
+const AdminDashboard = lazy(() => import("../modules/admin/AdminHome"))
 // const ViewStudent = lazy(() => import("../modules/student/ViewStudent"))
 // const DataManager = lazy(() => import("../modules/dataManagement/DataManager"))
 // const Staffs = lazy(() => import("../modules/staffs/Staffs"))
@@ -25,7 +27,10 @@ const RoutesComponent = ({ history }) => {
         <BrowserRouter>
             <Suspense fallback={<div className="displayNone"></div>}>
                 <Routes>
-                <Route path="/" element={<Home history={history} />} />
+                    <Route path="/" element={<Home history={history} />} />
+                    <Route element={<RootRouteGuard />}>
+                        <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
+                    </Route>
                     {/* <Route path="/" element={<GuestDashboard history={history} />} />
                     <Route path={RENDER_URL.WHY_MAVEN} element={<WhyMaven />} />
                     <Route path={RENDER_URL.SERVICES} element={<Services />} />
@@ -46,7 +51,7 @@ const RoutesComponent = ({ history }) => {
                         <Route path={RENDER_URL.ACTIONS} element={<AdminActions />} />
                         {/* Handle other routes */}
                     {/* </Route>
-                    <Route path="*" element={<Navigate to="/" />} /> */} 
+                    <Route path="*" element={<Navigate to="/" />} /> */}
                 </Routes>
             </Suspense>
         </BrowserRouter>

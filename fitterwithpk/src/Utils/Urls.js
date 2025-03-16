@@ -2,7 +2,7 @@
  * API and Render url defined
  */
 export const RENDER_URL = {
-    HOME_URL: '/dashboard',
+    HOME_URL: '/',
     GUEST_DASHBOARD: '/guest-dashboard',
     LOGIN_URL: "/login",
     REGISTER_URL: "/register",
