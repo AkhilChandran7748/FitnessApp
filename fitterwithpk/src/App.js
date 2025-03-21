@@ -1,11 +1,14 @@
 
 import './App.css';
+import React, { useEffect } from 'react';
 import { history } from './Core/Store';
 import Routes from './Core/Routes';
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import React, { useEffect } from 'react';
+import 'primeicons/primeicons.css';
 import { setBaseUrl } from "../src/Services/HttpService"
+
+
 function App() {
   React.useEffect(() => {
     // console.log = console.warn = console.error = () => {};

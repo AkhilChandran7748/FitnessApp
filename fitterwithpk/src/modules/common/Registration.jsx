@@ -11,8 +11,13 @@ import { Password } from 'primereact/password';
 import { RENDER_URL } from "../../Utils/Urls";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "./LoginServices";
+import { useLocation } from "react-router-dom";
+import GuestSideBar from "./GuestSideBar";
 const Register = ({ tabChange }) => {
     const password = useRef({});
+
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     const defaultValues = {
 
@@ -65,194 +70,173 @@ const Register = ({ tabChange }) => {
         return errors[name] ? <small className="p-error" style={{ marginBottom: '10px' }}>{errors[name].message}</small> : <small className="p-error" style={{ marginBottom: '10px' }}>&nbsp;</small>;
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="card">
-            <Splitter >
-                <SplitterPanel className=" margin-l-10 block-display" size={40}>
-                    <>
-                        <Controller
-                            name="name"
-                            control={control}
-                            rules={{ required: 'Name is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span >
-                                        {/* <label htmlFor={field.name}>Name </label> */}
-                                        <InputText placeholder="Full Name" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+        <div className="container">
+            <GuestSideBar currentPath={currentPath} />
+            <section>
+                <div className="row">
+                    <div className="col-md-5 mx-auto">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="login_form form">
+                                <div className="logo mb-3">
+                                    <div className="col-md-12 text-center">
+                                        <h1>Register</h1>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="form-group">
+                                        <label htmlFor="name">Full Name</label>
+                                        <Controller
+                                            name="name"
+                                            control={control}
+                                            rules={{ required: 'Name is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText placeholder="Full Name" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
 
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
+                                    <div className="form-group">
+                                        <label htmlFor="age">Age</label>
+                                        <Controller
+                                            name="age"
+                                            control={control}
+                                            rules={{ required: 'Age is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText type="number" placeholder="Age" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
 
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="age"
-                            control={control}
-                            rules={{ required: 'Age is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <InputNumber placeholder="Age" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.value)} />
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="weight"
-                            control={control}
-                            rules={{ required: 'Weight is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <InputNumber placeholder="Weight" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.value)} />
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="height"
-                            control={control}
-                            rules={{ required: 'Height is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <InputNumber placeholder="Height" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.value)} />
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="email"
-                            control={control}
-                            rules={{
-                                // required: 'Email is required.',
-                                pattern: {
-                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                    message: "Invalid email address"
-                                }
-                            }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span >
-                                        <InputText placeholder="Email" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="mobile"
-                            control={control}
-                            rules={{ required: 'Contact is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <InputText placeholder="Contact" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                    </>
-                    <Controller
-                        name="address"
-                        control={control}
-                        render={({ field, fieldState }) => (
-                            <div className=" margin-l-10">
-                                <span>
-                                    <InputTextarea placeholder="Address" rows={2} cols={30} autoResize id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                    <div className="form-group">
+                                        <label htmlFor="weight">Weight</label>
+                                        <Controller
+                                            name="weight"
+                                            control={control}
+                                            rules={{ required: 'Weight is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText type="number" placeholder="Weight" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
 
-                                </span>
+                                    <div className="form-group">
+                                        <label htmlFor="height">Height</label>
+                                        <Controller
+                                            name="height"
+                                            control={control}
+                                            rules={{ required: 'Height is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText type="number" placeholder="Height" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="email">Email</label>
+                                        <Controller
+                                            name="email"
+                                            control={control}
+                                            rules={{
+                                                pattern: {
+                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                    message: "Invalid email address"
+                                                }
+                                            }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText placeholder="Email" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="mobile">Contact</label>
+                                        <Controller
+                                            name="mobile"
+                                            control={control}
+                                            rules={{ required: 'Contact is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText placeholder="Contact" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="profession">Profession</label>
+                                        <Controller
+                                            name="profession"
+                                            control={control}
+                                            rules={{ required: 'Profession is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText placeholder="Profession" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="username">Username</label>
+                                        <Controller
+                                            name="username"
+                                            control={control}
+                                            rules={{ required: 'Username is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText placeholder="Username" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="password">Password</label>
+                                        <Controller
+                                            name="password"
+                                            control={control}
+                                            rules={{ required: 'Password is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText type="password" feedback={false} toggleMask className="form-control" placeholder="Enter Password" value={field.value} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                                        <Button label="Submit" className="btn-block" severity="info"/>
+                                        <Button label="Cancel" className="btn-block" severity="danger" onClick={() => reset()} autoFocus />
+                                    </div>
+                                </div>
                             </div>
-                        )}
-                    />
-                </SplitterPanel>
-                <SplitterPanel className=" margin-l-10 block-display" size={50}>
-                    <>
-                        <Controller
-                            name="profession"
-                            control={control}
-                            rules={{ required: 'Profession is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span >
-                                        {/* <label htmlFor={field.name}>Name </label> */}
-                                        <InputText placeholder="Profession" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="username"
-                            control={control}
-                            rules={{ required: 'Username is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span >
-                                        {/* <label htmlFor={field.name}>Name </label> */}
-                                        <InputText placeholder="Username" id={field.name} value={field.value} className={classNames({ 'p-invalid': fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="password"
-                            control={control}
-                            rules={{ required: 'Password is required.' }}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <Password feedback={false}
-                                            toggleMask
-                                            className="p-inputtext-sm margin-b-md"
-                                            placeholder="Enter Password"
-                                            value={field.value}
-                                            onChange={(e) => field.onChange(e.target.value)}
-                                        />
+                        </form>
+                    </div>
+                </div>
+            </section>
 
 
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                        <Controller
-                            name="repassword"
-                            control={control}
-                            render={({ field, fieldState }) => (
-                                <div className="margin-b-md">
-                                    <span>
-                                        <Password feedback={false}
-                                            toggleMask
-                                            className="p-inputtext-sm margin-b-md"
-                                            placeholder="Re Enter Password"
-                                            value={field.value}
-                                            onChange={(e) => field.onChange(e.target.value)}
-                                        />
 
-
-                                    </span>
-                                    <div >  {getFormErrorMessage(field.name)}</div>
-                                </div>
-                            )}
-                        />
-                    </>
-                </SplitterPanel>
-            </Splitter>
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <Button label="Submit" className="small-button margin-r-10" severity="success" />
-                <Button label="Cancel" className="small-button" severity="secondary" onClick={() => reset()} autoFocus />
-            </div>
-        </form>
+        </div>
     )
 }
 

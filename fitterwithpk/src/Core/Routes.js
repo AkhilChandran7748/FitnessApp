@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../modules/common/GuestHome";
 import { RENDER_URL } from "../Utils/Urls";
 import RootRouteGuard from "./RootRouteGuard";
+import Login from "../modules/common/Login";
+import Register from "../modules/common/Registration";
 // const GuestDashboard = lazy(() => import("../modules/guest/GuestDashboard"))
 // const WhyMaven = lazy(() => import("../modules/guest/WhyMaven"))
 // const Services = lazy(() => import("../modules/guest/Services"))
@@ -28,6 +30,10 @@ const RoutesComponent = ({ history }) => {
             <Suspense fallback={<div className="displayNone"></div>}>
                 <Routes>
                     <Route path="/" element={<Home history={history} />} />
+                    <Route path={RENDER_URL.LOGIN_URL} element={<Login history={history} />} />
+                    <Route path={RENDER_URL.REGISTER_URL} element={<Register history={history} />} />
+                    
+                    
                     <Route element={<RootRouteGuard />}>
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
                     </Route>
