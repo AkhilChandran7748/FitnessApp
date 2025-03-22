@@ -59,7 +59,7 @@ const Register = ({ tabChange }) => {
         registerUser(reqParams).then((res) => {
             if (res.data.success) {
                 reset();
-                tabChange(0)
+                navigate(RENDER_URL.HOME_URL)
             }
         })
 
@@ -98,7 +98,7 @@ const Register = ({ tabChange }) => {
                                         />
                                     </div>
 
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label htmlFor="age">Age</label>
                                         <Controller
                                             name="age"
@@ -141,7 +141,7 @@ const Register = ({ tabChange }) => {
                                                 </div>
                                             )}
                                         />
-                                    </div>
+                                    </div> */}
 
                                     <div className="form-group">
                                         <label htmlFor="email">Email</label>
@@ -178,7 +178,7 @@ const Register = ({ tabChange }) => {
                                         />
                                     </div>
 
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label htmlFor="profession">Profession</label>
                                         <Controller
                                             name="profession"
@@ -191,7 +191,7 @@ const Register = ({ tabChange }) => {
                                                 </div>
                                             )}
                                         />
-                                    </div>
+                                    </div> */}
 
                                     <div className="form-group">
                                         <label htmlFor="username">Username</label>
@@ -212,6 +212,20 @@ const Register = ({ tabChange }) => {
                                         <label htmlFor="password">Password</label>
                                         <Controller
                                             name="password"
+                                            control={control}
+                                            rules={{ required: 'Password is required.' }}
+                                            render={({ field, fieldState }) => (
+                                                <div>
+                                                    <InputText type="password" feedback={false} toggleMask className="form-control" placeholder="Enter Password" value={field.value} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <div>{getFormErrorMessage(field.name)}</div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="repassword">Re Type Password</label>
+                                        <Controller
+                                            name="repassword"
                                             control={control}
                                             rules={{ required: 'Password is required.' }}
                                             render={({ field, fieldState }) => (

@@ -30,10 +30,11 @@ const RoutesComponent = ({ history }) => {
             <Suspense fallback={<div className="displayNone"></div>}>
                 <Routes>
                     <Route path="/" element={<Home history={history} />} />
+                    <Route path={RENDER_URL.GUEST_DASHBOARD} element={<Home history={history} />} />
                     <Route path={RENDER_URL.LOGIN_URL} element={<Login history={history} />} />
                     <Route path={RENDER_URL.REGISTER_URL} element={<Register history={history} />} />
-                    
-                    
+
+
                     <Route element={<RootRouteGuard />}>
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
                     </Route>

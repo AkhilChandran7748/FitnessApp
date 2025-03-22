@@ -4,14 +4,23 @@ import { Sidebar } from "primereact/sidebar";
 import { Menu } from 'primereact/menu';
 import { useNavigate } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
+import { ManageLocalStorage } from "../../Services/Localstorage";
 
 const AdminSideBar = ({ currentPath }) => {
     const [visible, setVisible] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
     const navigate = useNavigate();
-
+    const onLogOut = () => {
+        navigate({
+            pathname: RENDER_URL.GUEST_DASHBOARD,
+        });
+        window.location.reload();
+        ManageLocalStorage.clear();
+       
+    }
     const items = [
         { label: 'Home', icon: 'pi pi-home', url: RENDER_URL.ADMIN_DASHBOARD },
+        { label: 'Logout', icon: 'pi pi-user-minus', action: onLogOut },
     ];
 
     useEffect(() => {
@@ -38,8 +47,9 @@ const AdminSideBar = ({ currentPath }) => {
                                 ...item,
                                 className: activeItem === item.label ? "sidebar_active_menu_item" : "",
                                 command: () => {
+                                    item?.action && item.action()
                                     setActiveItem(item.label);
-                                    navigate(item.url);
+                                    item?.url && navigate(item.url);
                                     setVisible(false);
                                 }
                             }))}

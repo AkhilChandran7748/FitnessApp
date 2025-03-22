@@ -107,3 +107,22 @@ h3 {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(78, 219, 23);
+}
+
+.grey {
+    color: #555555
+}
+
+.blue {
+    color: blue
+}
+.margin-r-5p{
+    margin-right: 5px!important;
+}

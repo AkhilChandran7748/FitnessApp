@@ -29,7 +29,8 @@ export const RENDER_URL = {
 export const API_URL = {
     REGISTRATION: "/user/register",
     LOGIN: "/user/login",
-    GET_ARTICLES: "/admin/article/getArticlesByStatus",
+    USERLIST: "/user/getAllUserDetails",    
+    APPROVE_USER: "/user/approveuser",
     ADD_LEAD: "/student/addLeadInfo",
     GET_LEADS: '/student/getAllActiveLeads',
     GET_NOTES: '/student/getLeadNotes',
