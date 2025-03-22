@@ -193,20 +193,7 @@ const Register = ({ tabChange }) => {
                                         />
                                     </div> */}
 
-                                    <div className="form-group">
-                                        <label htmlFor="username">Username</label>
-                                        <Controller
-                                            name="username"
-                                            control={control}
-                                            rules={{ required: 'Username is required.' }}
-                                            render={({ field, fieldState }) => (
-                                                <div>
-                                                    <InputText placeholder="Username" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
-                                                    <div>{getFormErrorMessage(field.name)}</div>
-                                                </div>
-                                            )}
-                                        />
-                                    </div>
+                                   
 
                                     <div className="form-group">
                                         <label htmlFor="password">Password</label>
