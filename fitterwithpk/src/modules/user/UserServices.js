@@ -11,3 +11,14 @@ export const dailyUpdate = params => {
         return response;
     });
 };
+export const getDailyUpdate = params => {
+    return httpCall({
+        url: API_URL.GET_SINGLE_DAY,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+

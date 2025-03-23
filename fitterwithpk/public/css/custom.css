@@ -92,13 +92,13 @@ body {
     transition: all linear 200ms;
 }
 
-.ad_card:hover{
+.ad_card:hover {
     transform: scale(1.01);
     transition: all linear 200ms;
     z-index: 1;
-    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
     cursor: pointer;
-  }
+}
 
 .pi {
     font-family: "primeicons" !important;
@@ -695,4 +695,12 @@ h3 {
 
 .margin-r-5p {
     margin-right: 5px !important;
+}
+
+.text-icon {
+    height: calc(1.5em + 0.75rem + 2px) !important;
+}
+
+.height-250p {
+    height: 250px;
 }

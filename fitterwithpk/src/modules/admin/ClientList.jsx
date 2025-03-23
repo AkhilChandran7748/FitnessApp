@@ -3,6 +3,8 @@ import PrimeReactDataTable from "../../Utils/PrimeReactDataTable";
 import { getClientList, approveUser } from "./adminServices";
 import ConfirmModal from "../common/ConfirmModal";
 import { Button } from "primereact/button";
+import { Link } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
 
 const ClientList = () => {
     const [clientList, setClientList] = useState([])
@@ -40,9 +42,12 @@ const ClientList = () => {
             field_name: "FirstName",
             template: (rowData) => {
                 return (
-                    <div className="flex align-items-center gap-2">
-                        <span className="text-info">{rowData.FirstName + ' ' + rowData.LastName}</span>
-                    </div>
+                    <Link to={`${RENDER_URL.VIEW_CLIENT}/${rowData.IdUser}`} target="_blank">
+                        <div className="flex align-items-center gap-2">
+                            <span className="text-info">{rowData.FirstName + ' ' + rowData.LastName}</span>
+                        </div>
+
+                    </Link>
                 );
             }
         },

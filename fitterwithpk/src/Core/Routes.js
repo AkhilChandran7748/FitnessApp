@@ -17,6 +17,7 @@ import Register from "../modules/common/Registration";
 // const Contact = lazy(() => import("../modules/guest/Contact"))
 const AdminDashboard = lazy(() => import("../modules/admin/AdminHome"))
 const DailyUpdates = lazy(() => import("../modules/user/DailyUpdates"))
+const DailyUpdatesTable =lazy(() => import("../modules/common/DailyUpdatesTable"))
 // const ViewStudent = lazy(() => import("../modules/student/ViewStudent"))
 // const DataManager = lazy(() => import("../modules/dataManagement/DataManager"))
 // const Staffs = lazy(() => import("../modules/staffs/Staffs"))
@@ -25,6 +26,7 @@ const DailyUpdates = lazy(() => import("../modules/user/DailyUpdates"))
 const StaffDashBoard = lazy(() => import("../modules/user/UserHome"))
 // const ResetPassword = lazy(() => import("../modules/login/ResetPassword"))
 // const University = lazy(()=>import("../modules/dataManagement/University"))
+const ViewClient = lazy(() => import("../modules/admin/UserProfile"))
 const RoutesComponent = ({ history }) => {
     return (
         <BrowserRouter>
@@ -40,6 +42,8 @@ const RoutesComponent = ({ history }) => {
                         <Route path={RENDER_URL.ADMIN_DASHBOARD} element={<AdminDashboard />} />
                         <Route path={RENDER_URL.STAFF_DASHBOARD} element={<StaffDashBoard />} />
                         <Route path={RENDER_URL.DAILY_UPDATES} element={<DailyUpdates />} />
+                        <Route path={RENDER_URL.VIEW_DAILY_UPDATES} element={<DailyUpdatesTable />} />
+                        <Route path={`${RENDER_URL.VIEW_CLIENT}/:id`} element={<ViewClient />} />
                     </Route>
                     {/* <Route path="/" element={<GuestDashboard history={history} />} />
                     <Route path={RENDER_URL.DAILY_UPDATES} element={<WhyMaven />} />
