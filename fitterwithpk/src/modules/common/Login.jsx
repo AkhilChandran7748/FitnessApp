@@ -7,11 +7,14 @@ import { RENDER_URL } from "../../Utils/Urls";
 import { login } from "./LoginServices";
 import GuestSideBar from "./GuestSideBar";
 const Login = ({ onClose }) => {
-    const [loginData, setLoginData] = useState({
+
+    let initialData = {
         EmailID: '',
         Password: '',
         "LoginType": "normal"
-    })
+    }
+
+    const [loginData, setLoginData] = useState(initialData);
     const [loginError, setLoginError] = useState(false)
     const navigate = useNavigate();
 
@@ -81,7 +84,7 @@ const Login = ({ onClose }) => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="exampleInputEmail1">Password</label>
-                                    <InputText type="password" feedback={false} placeholder="Password" value={loginData.password} onChange={(e) => onChange('Password', e.target.value)} className="p-inputtext-sm form-control margin-b-md" />
+                                    <InputText type="password" feedback={false} placeholder="Password" value={loginData.Password} onChange={(e) => onChange('Password', e.target.value)} className="p-inputtext-sm form-control margin-b-md" />
                                 </div>
                                 <div className="form-group">
                                     {loginError &&
@@ -91,8 +94,8 @@ const Login = ({ onClose }) => {
                                     }
                                 </div>
                                 <div className="col-md-12 text-center ">
-                                    <Button onClick={onLogin} label="Login" className="btn-block" severity="info" size="small" />
-                                    <Button onClick={onClose} label="Cancel" className="btn-block" severity="danger" size="small" />
+                                    <Button onClick={onLogin} label="Login" className="btn-block" severity="secondary" size="small" />
+                                    <Button onClick={()=>setLoginData(initialData)} label="Cancel" className="btn-block" severity="danger" size="small" />
                                 </div>
                                 <div className="form-group mt-5">
                                     <p className="text-center">

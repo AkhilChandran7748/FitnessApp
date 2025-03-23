@@ -225,7 +225,7 @@ const Register = ({ tabChange }) => {
                                     </div>
 
                                     <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                                        <Button label="Submit" className="btn-block" severity="info"/>
+                                        <Button label="Submit" className="btn-block" severity="secondary"/>
                                         <Button label="Cancel" className="btn-block" severity="danger" onClick={() => reset()} autoFocus />
                                     </div>
                                 </div>
