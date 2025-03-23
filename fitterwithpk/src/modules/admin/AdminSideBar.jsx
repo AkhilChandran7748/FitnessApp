@@ -16,7 +16,7 @@ const AdminSideBar = ({ currentPath }) => {
         });
         window.location.reload();
         ManageLocalStorage.clear();
-       
+
     }
     const items = [
         { label: 'Home', icon: 'pi pi-home', url: RENDER_URL.ADMIN_DASHBOARD },
@@ -34,7 +34,7 @@ const AdminSideBar = ({ currentPath }) => {
         <>
             <div className="nav nav-bar nav_bar_height">
                 <div className="sidebar_menu_btn">
-                    <Button icon="pi pi-bars" aria-label="Filter" onClick={() => setVisible(true)} />
+                    <Button icon="pi pi-bars" className="p-button p-button-secondary" aria-label="Filter" onClick={() => setVisible(true)} />
                 </div>
             </div>
 

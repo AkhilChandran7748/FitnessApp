@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PrimeReactDataTable from "../../Utils/PrimeReactDataTable";
 import { getClientList, approveUser } from "./adminServices";
 import ConfirmModal from "../common/ConfirmModal";
+import { Button } from "primereact/button";
+
 const ClientList = () => {
     const [clientList, setClientList] = useState([])
     const [show, setShow] = useState(false)
@@ -53,12 +55,16 @@ const ClientList = () => {
             field_name: "Mobile",
         },
         {
-            header: "",
+            header: "ApproveStatus",
             field_name: "",
             template: (rowData) => {
                 return (
-                    <div className="flex align-items-center gap-2">
-                        {rowData.ApproveStatus === 'Y' && <span title="User Approved" className="pi pi-check-circle green" ></span>}
+                    <div className="w-100">
+                        {rowData.ApproveStatus === 'Y' ?
+                            <span title="User Approved" className="pi pi-check-circle green">Approved</span>
+                            :
+                            <span title="Status Waiting" className="pi pi-check-circle text-warning">Pending</span>
+                        }
                     </div>
                 );
             }
@@ -69,11 +75,14 @@ const ClientList = () => {
             template: (rowData) => {
                 return (
                     <div className="flex align-items-center gap-2">
+
                         {rowData.ApproveStatus === 'N' && <span title="Approve User" onClick={() => {
                             setShow(true)
                             setSelectedClient(rowData.IdUser)
-                        }} className=" margin-r-5p pi pi-exclamation-circle red" ></span>}
+                        }} className=" margin-r-5p pi pi-exclamation-circle red shadow" ></span>}
+
                         <span title="Delete" onClick={() => { }} className="pi pi-trash red" ></span>
+
                     </div>
                 );
             }
