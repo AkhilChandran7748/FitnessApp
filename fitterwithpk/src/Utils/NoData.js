@@ -10,7 +10,7 @@ const NoData = (props) => {
           <div className="card-body text-center">
             <img
               alt="404"
-              className="mb-4 height-250p"
+              className="mb-4 height-200p"
               src="/images/nodata.png"
             />
             <h4 className="alert-heading mb-4">{props.data.title}</h4>

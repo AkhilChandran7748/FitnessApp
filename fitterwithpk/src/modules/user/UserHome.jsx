@@ -10,6 +10,6 @@ const UserHome = () => {
     return (<>
         <UserSideBar />
         <Button label="Daily Updates" onClick={() => navigate(RENDER_URL.DAILY_UPDATES)} size="large" />
-        <Button label="Weekly Updates" size="large" /></>)
+        <Button label="Weekly Updates"  onClick={() => navigate(RENDER_URL.WEEKLY_UPDATES)} size="large" /></>)
 }
 export default UserHome

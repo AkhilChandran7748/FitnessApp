@@ -22,6 +22,7 @@ const UserSideBar = ({ currentPath }) => {
         { label: 'Home', icon: 'pi pi-home', url: RENDER_URL.STAFF_DASHBOARD },
         { label: 'Add Daily Updates', icon: 'pi pi-home', url: RENDER_URL.DAILY_UPDATES },
         { label: 'My Daily Updates', icon: 'pi pi-home', url: RENDER_URL.VIEW_DAILY_UPDATES },
+        { label: 'My Weekly Updates', icon: 'pi pi-home', url: RENDER_URL.WEEKLY_UPDATES },
         { label: 'Logout', icon: 'pi pi-user-minus', action: onLogOut },
     ];
 

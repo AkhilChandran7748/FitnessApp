@@ -93,7 +93,7 @@ const DailyUpdatesTable = ({ id, adminView }) => {
         {!adminView && <UserSideBar />}
         <div className="logo mb-3">
             <div className="col-md-12 text-center">
-                <h1> Daily Updates</h1>
+                {!adminView && <h1>My Daily Updates</h1>}
             </div>
         </div>
         <div className="col-lg-8 offset-lg-2 col-sm-12 col-md-12">
