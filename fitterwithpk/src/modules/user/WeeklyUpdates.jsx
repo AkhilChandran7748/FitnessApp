@@ -47,27 +47,32 @@ const WeeklyUpdates = ({ tabChange }) => {
     password.current = watch("password", "");
     const onSubmit = (data) => {
         let dateAarray = data.date
-        console.log(dateAarray[0] ? moment(dateAarray[0]).format('L') : '', '-', dateAarray[1] ? moment(dateAarray[1]).format('L') : moment(dateAarray[0]).format('L'));
+        let d1 = dateAarray[0] ? moment(dateAarray[0]).format('L') : ''
+        let d2 = dateAarray[1] ? moment(dateAarray[1]).format('L') : moment(dateAarray[0]).format('L');
+        console.log(`${d1}-${d2}`, 'd1');
 
-        // let formdata = new FormData()
-        // formdata.append("files", files)
-        // formdata.append("Day", application_id)
-        // let reqParams = {
-        //     "Day": moment(data.date).format('L'),
-        //     "Steps": data.steps,
-        //     "Water": data.water,
-        //     "Weight": data.weight,
-        //     "Sleep": data.sleep,
-        //     "Diet_Follow": data.diet === "Yes" ? 1 : 0,
-        //     "WorkOut": data.workout === "Yes" ? 1 : 0,
-        // }
 
-        // weeklyUpdate(reqParams).then((res) => {
-        //     if (res.data.success) {
-        //         reset();
-        //         showToast('Daily Updates Saved Succesfully');
-        //     }
-        // })
+        let formdata = new FormData()
+        if (files?.length) {
+            for (var x = 0; x < files.length; x++) {
+                formdata.append("WeeklyFile", files[x]);
+            }
+        }
+        formdata.append("DateRange", `${d1}-${d2}`);
+        formdata.append("Weight", data.weight);
+        formdata.append("Waist", data.waist);
+        formdata.append("BodyFat", data.fat);
+        formdata.append("Neck", data.neck);
+        formdata.append("Chest", data.chest);
+        formdata.append("UpperArm", data.arm);
+        formdata.append("Quadriceps", data.quad);
+
+        weeklyUpdate(formdata).then((res) => {
+            if (res.data.success) {
+                reset();
+                showToast('Weekly  Updates Saved Succesfully');
+            }
+        })
 
         // reset();
     };
@@ -76,7 +81,7 @@ const WeeklyUpdates = ({ tabChange }) => {
         return errors[name] ? <small className="p-error" style={{ marginBottom: '10px' }}>{errors[name].message}</small> : <small className="p-error" style={{ marginBottom: '10px' }}>&nbsp;</small>;
     };
     const onUpload = (e) => {
-        console.log(e);
+        setFiles(e)
 
     }
     return (
@@ -225,7 +230,7 @@ const WeeklyUpdates = ({ tabChange }) => {
                                             rules={{ required: 'Quadriceps is required.' }}
                                             render={({ field, fieldState }) => (
                                                 <div className="p-inputgroup w-full md:w-30rem">
-                                                    <InputText type="number" placeholder="Upper Arm" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
+                                                    <InputText type="number" placeholder="Quadriceps" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} />
                                                     <span className="p-inputgroup-addon text-icon">in</span>
                                                     <div>{getFormErrorMessage(field.name)}</div>
                                                 </div>

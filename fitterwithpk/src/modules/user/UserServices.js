@@ -1,4 +1,4 @@
-import { httpCall } from "../../Services/HttpService";
+import { httpCall, httpUpload } from "../../Services/HttpService";
 import { API_URL } from "../../Utils/Urls";
 
 
@@ -12,7 +12,7 @@ export const dailyUpdate = params => {
     });
 };
 export const weeklyUpdate = params => {
-    return httpCall({
+    return httpUpload({
         url: API_URL.WEEKLY_UPDATES,
         method: "post",
         data: params
