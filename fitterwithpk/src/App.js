@@ -11,38 +11,33 @@ import { setBaseUrl } from "../src/Services/HttpService"
 
 function App() {
 
-  const [configLoaded, setConfigLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false)
 
   React.useEffect(() => {
     // console.log = console.warn = console.error = () => {};
 
-    console.log("STATE",configLoaded)
-
-    if (!configLoaded) {
-      console.log(">>>>>APP JS>>>>");
-      let headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      let init = {
-        method: "GET",
-        headers: headers,
-      };
-      fetch("/appConfig.json", init)
-        .then((response) => {
-          return response.json();
-        })
-        .then((obj) => {
-          setBaseUrl(obj.baseUrl);
-          setConfigLoaded(true);
-        });
-    }
-  }, [configLoaded]);
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    let init = {
+      method: "GET",
+      headers: headers,
+    };
+    fetch("/appConfig.json", init)
+      .then((response) => {
+        return response.json();
+      })
+      .then((obj) => {
+        setBaseUrl(obj.baseUrl);
+        setLoaded(true)
+      });
+  }, []);
 
 
   return (
     <div className="App">
-      <PrimeReactProvider>
+      {loaded && <PrimeReactProvider>
         <Routes history={history} />
-      </PrimeReactProvider>
+      </PrimeReactProvider>}
     </div>
   );
 }

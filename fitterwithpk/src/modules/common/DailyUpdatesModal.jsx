@@ -112,7 +112,7 @@ const DailyUpdatesModal = ({ visible, data = [], setVisible }) => {
                         <h3>Progress Images</h3>
                         <div className="rowC">
                             {images.map((i) => <div className="margin-r-10p" >
-                                <Image src={i} alt="Image" width="250" preview />
+                                <Image src={`https://api.fitwithpk.com/uploads/weekly/${i}`} alt="Image" width="250" preview />
                             </div>)}
                         </div>
 

@@ -78,7 +78,7 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
             template: (rowData) => {
                 return (
                     <div className="flex align-items-center gap-2">
-                        <span className="text-info">{(rowData.Neck || 0) + ' hrs '}</span>
+                        <span className="text-info">{(rowData.Neck || 0) + '  in. '}</span>
                     </div>
                 );
             }
@@ -89,7 +89,7 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
             template: (rowData) => {
                 return (
                     <div className="flex align-items-center gap-2">
-                        <span className="text-info">{(rowData.Chest || 0) + ' hrs '}</span>
+                        <span className="text-info">{(rowData.Chest || 0) + '  in. '}</span>
                     </div>
                 );
             }
@@ -100,7 +100,7 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
             template: (rowData) => {
                 return (
                     <div className="flex align-items-center gap-2">
-                        <span className="text-info">{(rowData.UpperArm || 0) + ' hrs '}</span>
+                        <span className="text-info">{(rowData.UpperArm || 0) + '  in. '}</span>
                     </div>
                 );
             }
@@ -111,7 +111,7 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
             template: (rowData) => {
                 return (
                     <div className="flex align-items-center gap-2">
-                        <span className="text-info">{(rowData.Quadriceps || 0) + ' hrs '}</span>
+                        <span className="text-info">{(rowData.Quadriceps || 0) + '  in. '}</span>
                     </div>
                 );
             }
