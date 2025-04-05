@@ -696,6 +696,9 @@ h3 {
 .margin-r-5p {
     margin-right: 5px !important;
 }
+.margin-r-10p {
+    margin-right: 10px !important;
+}
 
 .text-icon {
     height: calc(1.5em + 0.75rem + 2px) !important;
@@ -707,3 +710,4 @@ h3 {
 .height-200p {
     height: 200px;
 }
+.rowC{display:flex; flex-direction:row;}

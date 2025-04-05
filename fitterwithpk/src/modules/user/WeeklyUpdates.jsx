@@ -1,23 +1,18 @@
 import React, { useRef, useState } from "react";
 import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
 import { Controller, useForm } from 'react-hook-form';
 import { classNames } from 'primereact/utils';
 import { InputText } from "primereact/inputtext";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { dailyUpdate, weeklyUpdate } from "./UserServices";
+import { weeklyUpdate } from "./UserServices";
 import UserSideBar from "./UserSideBar";
 import { Calendar } from 'primereact/calendar';
 import moment from 'moment';
-import { RadioButton } from 'primereact/radiobutton';
 import { Toast } from "primereact/toast";
-import { FileUpload } from 'primereact/fileupload';
+import { RENDER_URL } from "../../Utils/Urls";
 const WeeklyUpdates = ({ tabChange }) => {
     const password = useRef({});
     const [files, setFiles] = useState(null)
-    const location = useLocation();
-    const currentPath = location.pathname;
 
     const toast = useRef(null);
     const showToast = (detail) => {
@@ -35,12 +30,8 @@ const WeeklyUpdates = ({ tabChange }) => {
         control,
         formState: { errors },
         handleSubmit,
-        getValues,
         reset,
-        register,
-        setValue,
         watch,
-        setError
     } = useForm({ defaultValues });
 
     const navigate = useNavigate();
@@ -71,6 +62,7 @@ const WeeklyUpdates = ({ tabChange }) => {
             if (res.data.success) {
                 reset();
                 showToast('Weekly  Updates Saved Succesfully');
+                navigate(RENDER_URL.STAFF_DASHBOARD)
             }
         })
 

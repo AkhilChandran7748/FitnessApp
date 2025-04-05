@@ -12,10 +12,6 @@ const PersonalInfo = ({ client }) => {
                             <span className="pi pi-envelope grey  margin-r-10" style={{ float: 'left' }} />
                             <span>  <h6>{client?.Email}</h6></span>
                         </div>
-                        <div >
-                            <span className="pi pi-phone grey  margin-r-10" style={{ float: 'left' }} />
-                            <h6>{client?.MobileNumber}</h6>
-                        </div>
 
                     </div>
                 </SplitterPanel>

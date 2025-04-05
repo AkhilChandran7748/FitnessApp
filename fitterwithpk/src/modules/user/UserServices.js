@@ -32,3 +32,14 @@ export const getDailyUpdate = params => {
 };
 
 
+export const getWeeklyUpdate = params => {
+    return httpCall({
+        url: API_URL.GET_WEEKLY_UPDATES,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+
