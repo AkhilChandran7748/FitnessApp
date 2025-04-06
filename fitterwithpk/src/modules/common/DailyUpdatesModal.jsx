@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from 'primereact/dialog';
 
 import { Image } from 'primereact/image';
 import { Carousel } from 'primereact/carousel';
-const DailyUpdatesModal = ({ visible, data = [], setVisible }) => {
-    console.log(data, 'data');
-
+const DailyUpdatesModal = ({ visible, data = [], setVisible, selectedData }) => {
+     const [index, setIndex] = useState(data.findIndex((i) => i.DataRange === selectedData.DataRange) || 0)
+     
+    useEffect(() => {
+        setIndex(data.findIndex((i) => i.DataRange === selectedData.DataRange) || 0)
+    }, [data, selectedData, visible])
+    console.log(index, 'data');
+  
     const dataTemplate = (item) => {
         let images = item.FileName ? item.FileName.split(',') : []
         return (
+            
             <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
 
                 <div>
@@ -125,7 +131,7 @@ const DailyUpdatesModal = ({ visible, data = [], setVisible }) => {
         <div className="card flex justify-content-center">
             <Dialog position={'top'} header={" Weekly Updates"} visible={visible} style={{ width: '100vw' }} onHide={() => { if (!visible) return; setVisible(false); }}>
                 <div className="card">
-                    <Carousel value={data} numVisible={1} numScroll={1} itemTemplate={dataTemplate} />
+                    <Carousel value={data} numVisible={1} numScroll={1} itemTemplate={dataTemplate} page={index} />
                 </div>
             </Dialog>
         </div>

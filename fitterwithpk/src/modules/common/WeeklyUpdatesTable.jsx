@@ -3,10 +3,15 @@ import PrimeReactDataTable from "../../Utils/PrimeReactDataTable";
 import { getWeeklyUpdate } from "../user/UserServices";
 import UserSideBar from "../user/UserSideBar";
 import DailyUpdatesModal from "./DailyUpdatesModal";
+import EditWeeklyUpdates from "../user/EditWeeklyUpdates";
 
-const WeeklyUpdatesTable = ({ id , adminView }) => {
+const WeeklyUpdatesTable = ({ id, adminView }) => {
     const [data, setData] = useState([])
     const [show, setShow] = useState(false)
+    const [selectedRow, setSelectedRow] = useState(null)
+    const [showEdit, setShowEdit] = useState(false)
+    const [editdata, setEditData] = useState({})
+
     const getData = () => {
         let reqParam = {}
         if (id) {
@@ -23,7 +28,7 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
     }, [])
 
 
-    const columnHelper = [
+    let columnHelper = [
         {
             header: "Date Range",
             field_name: "DataRange",
@@ -117,17 +122,37 @@ const WeeklyUpdatesTable = ({ id , adminView }) => {
             }
         },
         {
-            header: "Detailed View",
+            header: "Actions",
             field_name: "",
-            template: () => {
-                return (<div className="w-100">
-                    <span title="Yes" className="pi pi-eye text-success" onClick={() => setShow(true)}></span>
-                </div>)
+            template: (rowData) => {
+
+
+                return (<>
+                    <div className="w-100">
+                        <span title="Detailed View" className="pi pi-eye text-success margin-r-5p" onClick={() => {
+                            setSelectedRow(rowData)
+                            setShow(true)
+                        }}></span>
+                        {!adminView && <span title="Edit" className="pi pi-pen-to-square " onClick={() => {
+                            setEditData(rowData)
+                            setShowEdit(true)
+                        }}></span>}
+                    </div> </>)
+
             }
         },
     ];
     return (<>
-        {show && <DailyUpdatesModal data={data} visible={show} setVisible={(i) => setShow(i)} />}
+        {showEdit && <EditWeeklyUpdates
+            data={editdata}
+            reload={() => {
+                setShowEdit(false);
+                setEditData({})
+                getData();
+            }}
+            visible={showEdit} setVisible={setShowEdit} />}
+        {show && selectedRow && <DailyUpdatesModal key={selectedRow.DataRange} selectedData={selectedRow} data={data} visible={show} setVisible={(i) => setShow(i)} />}
+
         {!adminView && <UserSideBar />}
         <div className="logo mb-3">
             <div className="col-md-12 text-center">

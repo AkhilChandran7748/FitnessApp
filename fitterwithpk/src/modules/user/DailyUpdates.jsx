@@ -12,9 +12,9 @@ import { Calendar } from 'primereact/calendar';
 import moment from 'moment';
 import { RadioButton } from 'primereact/radiobutton';
 import { Toast } from "primereact/toast";
+import { RENDER_URL } from "../../Utils/Urls";
 const DailyUpdates = ({ tabChange }) => {
     const password = useRef({});
-
     const location = useLocation();
     const currentPath = location.pathname;
 
@@ -23,8 +23,9 @@ const DailyUpdates = ({ tabChange }) => {
         toast.current.show({ severity: 'info', summary: 'Success', detail });
     };
     const defaultValues = {
-        diet: 'Yes',
-        workout: 'Yes',
+        date: new Date(),
+        diet: 'No',
+        workout: 'No',
         steps: '',
         water: '',
         weight: '',
@@ -59,6 +60,7 @@ const DailyUpdates = ({ tabChange }) => {
             if (res.data.success) {
                 reset();
                 showToast('Daily Updates Saved Succesfully');
+                navigate(RENDER_URL.VIEW_DAILY_UPDATES)
             }
         })
 
@@ -92,7 +94,9 @@ const DailyUpdates = ({ tabChange }) => {
                                             rules={{ required: 'Date is required.' }}
                                             render={({ field, fieldState }) => (
                                                 <div>
-                                                    <Calendar id={field.name} value={field.value} onChange={(e) => field.onChange(e.value)} placeholder="Select Date" />
+                                                    <Calendar
+                                                        maxDate={new Date()}
+                                                        id={field.name} value={field.value} onChange={(e) => field.onChange(e.value)} placeholder="Select Date" />
                                                     {/* <InputText placeholder="Full Name" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} /> */}
                                                     <div>{getFormErrorMessage(field.name)}</div>
                                                 </div>

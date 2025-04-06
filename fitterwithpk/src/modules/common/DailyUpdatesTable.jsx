@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import PrimeReactDataTable from "../../Utils/PrimeReactDataTable";
 import { getDailyUpdate } from "../user/UserServices";
 import UserSideBar from "../user/UserSideBar";
+import EditDailyUpdates from "../user/EditDailyUpdate";
 
 const DailyUpdatesTable = ({ id, adminView }) => {
     const [data, setData] = useState([])
+    const [showEdit, setShowEdit] = useState(false)
+    const [editdata, setEditData] = useState({})
     const getData = () => {
         let reqParam = {}
         if (id) {
@@ -20,7 +23,7 @@ const DailyUpdatesTable = ({ id, adminView }) => {
     }, [])
 
 
-    const columnHelper = [
+    let columnHelper = [
         {
             header: "Date",
             field_name: "Day",
@@ -89,7 +92,30 @@ const DailyUpdatesTable = ({ id, adminView }) => {
             }
         },
     ];
+    if (!adminView) {
+        columnHelper.push({
+            header: "Edit",
+            field_name: "",
+            template: (rowData) => {
+                return (<div className="w-100">
+                    <span title="Edit" className="pi pi-pen-to-square " onClick={() => {
+                        setEditData(rowData)
+                        setShowEdit(true)
+                    }}></span>
+                </div>)
+            }
+        })
+    }
     return (<>
+        {showEdit && <EditDailyUpdates
+            data={editdata}
+            reload={() => {
+                setEditData({})
+                setShowEdit(false)
+                getData();
+            }}
+            setVisible={() => setShowEdit(false)}
+            visible={showEdit} />}
         {!adminView && <UserSideBar />}
         <div className="logo mb-3">
             <div className="col-md-12 text-center">
@@ -100,12 +126,12 @@ const DailyUpdatesTable = ({ id, adminView }) => {
             <PrimeReactDataTable
                 data={data}
                 columns={columnHelper}
-                onRowSelect={(clickData) => {
-                    console.log("row data", clickData);
-                }}
-                onCellSelect={(cellData) => {
-                    console.log("cell data", cellData);
-                }}
+            // onRowSelect={(clickData) => {
+            //     console.log("row data", clickData);
+            // }}
+            // onCellSelect={(cellData) => {
+            //     console.log("cell data", cellData);
+            // }}
             />
         </div>
     </>)

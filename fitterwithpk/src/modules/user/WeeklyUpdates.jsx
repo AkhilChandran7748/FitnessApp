@@ -57,6 +57,7 @@ const WeeklyUpdates = ({ tabChange }) => {
         formdata.append("Chest", data.chest);
         formdata.append("UpperArm", data.arm);
         formdata.append("Quadriceps", data.quad);
+        formdata.append("BodyHip", data.hip);
 
         weeklyUpdate(formdata).then((res) => {
             if (res.data.success) {
