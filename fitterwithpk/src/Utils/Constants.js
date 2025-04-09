@@ -30,3 +30,16 @@ export const colors = [
 ];
 
 
+
+
+export const WEIGHT_UNIT = Object.freeze({
+    KILO: "kg",
+    POUND: "lbs"
+});
+
+export const HEIGHT_UNIT = Object.freeze({
+    INCH: "in",
+    CENTI: "cm"
+});
+
+

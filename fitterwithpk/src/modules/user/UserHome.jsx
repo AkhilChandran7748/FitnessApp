@@ -4,12 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 import UserSideBar from "./UserSideBar";
 import { getDailyUpdate } from "./UserServices";
+import UserPersonalInfo from "./UserPersonalInfo";
+import UserMobileFooter from "./UserMobileFooter";
 const UserHome = () => {
     const navigate = useNavigate();
-    
+
     return (<>
         <UserSideBar />
-        <Button label="Daily Updates" onClick={() => navigate(RENDER_URL.DAILY_UPDATES)} size="large" />
-        <Button label="Weekly Updates"  onClick={() => navigate(RENDER_URL.WEEKLY_UPDATES)} size="large" /></>)
+        <div className="container fit_app_section">
+            <UserPersonalInfo />
+        </div>
+        <UserMobileFooter />
+    </>)
 }
 export default UserHome

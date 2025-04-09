@@ -37,10 +37,10 @@ const UserProfile = () => {
     return (<>
         <AdminSideBar />
         <Toast ref={toast} />
-        <div className="content student">
+        <div className="container fit_app_section">
             <div className="card">
                 <PersonalInfo client={clientData} />
-                <TabView className="content">
+                <TabView className="content" style={{ color: "black" }}>
                     <TabPanel header="Daily Updates">
                         <DailyUpdatesTable id={id} adminView={true} />
                     </TabPanel>

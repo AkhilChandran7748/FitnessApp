@@ -1,139 +1,125 @@
 import React, { useEffect, useState } from "react";
-import PrimeReactDataTable from "../../Utils/PrimeReactDataTable";
+import { DataView } from "primereact/dataview";
 import { getDailyUpdate } from "../user/UserServices";
 import UserSideBar from "../user/UserSideBar";
 import EditDailyUpdates from "../user/EditDailyUpdate";
+import { FaPen, FaDirections, FaMoon, FaTint, FaWeightHanging, FaCheckCircle, FaTimesCircle, FaStar } from "react-icons/fa";
 
 const DailyUpdatesTable = ({ id, adminView }) => {
-    const [data, setData] = useState([])
-    const [showEdit, setShowEdit] = useState(false)
-    const [editdata, setEditData] = useState({})
-    const getData = () => {
-        let reqParam = {}
-        if (id) {
-            reqParam = { "IdUser": id }
-        }
-        getDailyUpdate(reqParam).then((res) => {
-            setData(res.data.data)
+    const [data, setData] = useState([]);
+    const [showEdit, setShowEdit] = useState(false);
+    const [editdata, setEditData] = useState({});
 
-        })
-    }
+    const getData = () => {
+        let reqParam = {};
+        if (id) reqParam = { IdUser: id };
+        getDailyUpdate(reqParam).then((res) => {
+            setData(res.data.data);
+        });
+    };
+
     useEffect(() => {
         getData();
-    }, [])
+    }, []);
 
+    const itemTemplate = (rowData) => {
+        return (
+            <div className="col-sm-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                <div className="card" style={{ width: "18rem" }}>
+                    <div className="card-body">
+                        <div className="d-flex justify-content-between align-items-center mb-2">
+                            <h5 className="card-title text-primary mb-0">{rowData.Day}</h5>
+                            {!adminView && (
+                                <FaPen
+                                    className="text-dark"
+                                    style={{ cursor: "pointer" }}
+                                    title="Edit"
+                                    onClick={() => {
+                                        setEditData(rowData);
+                                        setShowEdit(true);
+                                    }}
+                                />
+                            )}
+                        </div>
 
-    let columnHelper = [
-        {
-            header: "Date",
-            field_name: "Day",
-        },
-        {
-            header: "Steps",
-            field_name: "Steps",
-        },
-        {
-            header: "Sleep",
-            field_name: "Sleep",
-            template: (rowData) => {
-                return (
-                    <div className="flex align-items-center gap-2">
-                        <span className="text-info">{rowData.Sleep + ' hrs '}</span>
+                        <p className="card-text">
+                            <FaDirections className="text-dark me-2" />
+                            <strong>Steps:</strong> {rowData.Steps}
+                        </p>
+                        <p className="card-text">
+                            <FaMoon className="text-dark me-2" />
+                            <strong>Sleep:</strong> {rowData.Sleep} hrs
+                        </p>
+                        <p className="card-text">
+                            <FaTint className="text-dark me-2" />
+                            <strong>Water:</strong> {rowData.Water} ltrs
+                        </p>
+                        <p className="card-text">
+                            <FaWeightHanging className="text-dark me-2" />
+                            <strong>Weight:</strong> {rowData.Weight} kg
+                        </p>
+
+                        <p className="card-text">
+                            <FaStar className="text-dark me-2" />
+                            <strong>Workout Follow:</strong>{" "}
+                            {rowData.WorkOut ? (
+                                <span className="text-success">
+                                    <FaCheckCircle /> Done
+                                </span>
+                            ) : (
+                                <span className="text-danger">
+                                    <FaTimesCircle /> No
+                                </span>
+                            )}
+                        </p>
+                        <p className="card-text">
+                            <FaCheckCircle className="text-dark me-2" />
+                            <strong>Diet Follow:</strong>{" "}
+                            {rowData.Diet_Follow ? (
+                                <span className="text-success">
+                                    <FaCheckCircle /> Done
+                                </span>
+                            ) : (
+                                <span className="text-danger">
+                                    <FaTimesCircle /> No
+                                </span>
+                            )}
+                        </p>
                     </div>
-                );
-            }
-        },
-        {
-            header: "Water",
-            field_name: "Water",
-            template: (rowData) => {
-                return (
-                    <div className="flex align-items-center gap-2">
-                        <span className="text-info">{rowData.Water + ' ltrs '}</span>
-                    </div>
-                );
-            }
-        },
-        {
-            header: "Weight",
-            field_name: "Weight",
-            template: (rowData) => {
-                return (
-                    <div className="flex align-items-center gap-2">
-                        <span className="text-info">{rowData.Weight + ' kg '}</span>
-                    </div>
-                );
-            }
-        },
-        {
-            header: "WorkOut Follow",
-            field_name: "WorkOut",
-            template: (rowData) => {
-                return (<div className="w-100">
-                    {rowData.WorkOut ?
-                        <span title="Yes" className="pi pi-check-circle text-success">Done</span>
-                        :
-                        <span title="No" className="pi pi-check-circle text-danger">No</span>
-                    }
-                </div>)
-            }
-        },
-        {
-            header: "Diet Follow",
-            field_name: "Diet_Follow",
-            template: (rowData) => {
-                return (<div className="w-100">
-                    {rowData.Diet_Follow ?
-                        <span title="Yes" className="pi pi-check-circle text-success">Done</span>
-                        :
-                        <span title="No" className="pi pi-check-circle text-danger">No</span>
-                    }
-                </div>)
-            }
-        },
-    ];
-    if (!adminView) {
-        columnHelper.push({
-            header: "Edit",
-            field_name: "",
-            template: (rowData) => {
-                return (<div className="w-100">
-                    <span title="Edit" className="pi pi-pen-to-square " onClick={() => {
-                        setEditData(rowData)
-                        setShowEdit(true)
-                    }}></span>
-                </div>)
-            }
-        })
-    }
-    return (<>
-        {showEdit && <EditDailyUpdates
-            data={editdata}
-            reload={() => {
-                setEditData({})
-                setShowEdit(false)
-                getData();
-            }}
-            setVisible={() => setShowEdit(false)}
-            visible={showEdit} />}
-        {!adminView && <UserSideBar />}
-        <div className="logo mb-3">
-            <div className="col-md-12 text-center">
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <>
+            {showEdit && (
+                <EditDailyUpdates
+                    data={editdata}
+                    reload={() => {
+                        setEditData({});
+                        setShowEdit(false);
+                        getData();
+                    }}
+                    setVisible={() => setShowEdit(false)}
+                    visible={showEdit}
+                />
+            )}
+            {!adminView && <UserSideBar />}
+            <div className="logo mb-3 text-center">
                 {!adminView && <h1>My Daily Updates</h1>}
             </div>
-        </div>
-        <div className="col-lg-8 offset-lg-2 col-sm-12 col-md-12">
-            <PrimeReactDataTable
-                data={data}
-                columns={columnHelper}
-            // onRowSelect={(clickData) => {
-            //     console.log("row data", clickData);
-            // }}
-            // onCellSelect={(cellData) => {
-            //     console.log("cell data", cellData);
-            // }}
-            />
-        </div>
-    </>)
-}
-export default DailyUpdatesTable
+            <div className="container">
+                <DataView
+                    value={data}
+                    itemTemplate={itemTemplate}
+                    layout="grid"
+                    paginator
+                    rows={9}
+                />
+            </div>
+        </>
+    );
+};
+
+export default DailyUpdatesTable;

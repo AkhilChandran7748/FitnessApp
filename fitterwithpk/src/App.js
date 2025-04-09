@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { history } from './Core/Store';
 import Routes from './Core/Routes';
 import { PrimeReactProvider } from 'primereact/api';
+import 'primeflex/primeflex.css';
+import 'primereact/resources/primereact.css';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import 'primeicons/primeicons.css';
 import { setBaseUrl } from "../src/Services/HttpService"

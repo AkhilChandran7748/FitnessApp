@@ -36,13 +36,28 @@ const UserSideBar = ({ currentPath }) => {
 
     return (
         <>
-            <div className="nav nav-bar nav_bar_height">
-                <div className="sidebar_menu_btn">
-                    <Button icon="pi pi-bars" aria-label="Filter" onClick={() => setVisible(true)} />
+            <div className="nav nav-bar nav_bar_height d-flex align-items-center position-relative shadow menu_bar_custom">
+
+                <div className="navbar-logo mx-auto">
+                    <img src="/images/logo_.png" alt="FitwithPK Logo" style={{ height: '150px', objectFit: 'contain', marginTop: '-30px' }} />
+                </div>
+
+
+                <div className="sidebar_menu_btn position-absolute start-0 ms-2">
+                    <Button icon="pi pi-bars" severity="secondary" aria-label="Filter" onClick={() => setVisible(true)} />
                 </div>
             </div>
 
-            <Sidebar visible={visible} onHide={() => setVisible(false)}>
+
+            <Sidebar visible={visible} onHide={() => setVisible(false)} header={
+                <div className="d-flex justify-content-center align-items-center w-100">
+                    <img
+                        src="/images/logo_.png"
+                        alt="FitwithPK Logo"
+                        style={{ height: '150px', objectFit: 'contain' }}
+                    />
+                </div>
+            }>
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 sidebar_menu_wrapper">
                         <Menu

@@ -88,7 +88,7 @@ body {
     border: 1px solid #cccccc;
     display: flex;
     box-sizing: border-box;
-    min-height: 150px;
+    /* min-height: 150px; */
     transition: all linear 200ms;
 }
 
@@ -619,47 +619,39 @@ ul.p-dropdown-items {
 }
 
 
-
-
-
-/* 
-body {
-    padding-top: 4.2rem;
-    padding-bottom: 4.2rem;
-    background: rgba(0, 0, 0, 0.76);
-}
-
-a {
-    text-decoration: none !important;
-}
-
-h1,
-h2,
-h3 {
-    font-family: 'Kaushan Script', cursive;
-}
-
-.myform {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 1rem;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 1.1rem;
-    outline: 0;
-    max-width: 500px;
-}
-
-.tx-tfm {
-    text-transform: uppercase;
-}
- */
+/* Custom styles for the footer */
+.mobile-footer {
+    background-color: #343a40 !important; /* Dark background for footer */
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures it is on top of other content */
+  }
+  
+  .mobile-footer .d-flex {
+    justify-content: space-around;
+  }
+  
+  .mobile-footer a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+  }
+  
+  .mobile-footer a div {
+    font-size: 12px;
+  }
+  
+  .mobile-footer .p-button {
+    margin-bottom: 5px;
+  }
+  
+  .mobile-footer .p-button-rounded {
+    font-size: 24px;
+  }
+  
 
 
 /* Smaller than standard 960 (devices and browsers) */
@@ -669,7 +661,26 @@ h3 {
 @media only screen and (min-width: 768px) and (max-width: 959px) {}
 
 /* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+
+    .menu_bar_custom{
+        position: fixed !important;
+        background: rgb(255, 255, 255);
+        width: 100% !important;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .fit_app_section {
+        padding: 10px;
+        padding-top: 5rem;
+        margin-bottom: 100px !important;
+    }
+
+
+
+}
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) {}
