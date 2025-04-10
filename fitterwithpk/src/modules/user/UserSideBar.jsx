@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { RENDER_URL } from "../../Utils/Urls";
 import { ManageLocalStorage } from "../../Services/Localstorage";
 
+
 const UserSideBar = ({ currentPath }) => {
     const [visible, setVisible] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
@@ -40,8 +41,9 @@ const UserSideBar = ({ currentPath }) => {
 
 
                 <div className="sidebar_menu_btn position-absolute start-0 ms-2">
-                    <Button icon="pi pi-bars" severity="secondary" aria-label="Filter" onClick={() => setVisible(true)} />
+                    <Button icon="pi pi-bars" style={{background:'white',border:'white',color:'black'}} aria-label="Filter" onClick={() => setVisible(true)} />
                 </div>
+
             </div>
 
 

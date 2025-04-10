@@ -8,6 +8,7 @@ import UserPersonalInfo from "./UserPersonalInfo";
 import UserMobileFooter from "./UserMobileFooter";
 import TopTileMenu from "./TopTileMenu";
 const UserHome = () => {
+    
     const navigate = useNavigate();
 
     return (<>

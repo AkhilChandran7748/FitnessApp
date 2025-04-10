@@ -621,38 +621,40 @@ ul.p-dropdown-items {
 
 /* Custom styles for the footer */
 .mobile-footer {
-    background-color: #343a40 !important; /* Dark background for footer */
+    background-color: #343a40 !important;
+    /* Dark background for footer */
     color: white;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Ensures it is on top of other content */
-  }
-  
-  .mobile-footer .d-flex {
+    z-index: 1000;
+    /* Ensures it is on top of other content */
+}
+
+.mobile-footer .d-flex {
     justify-content: space-around;
-  }
-  
-  .mobile-footer a {
+}
+
+.mobile-footer a {
     text-decoration: none;
     color: white;
     text-align: center;
-  }
-  
-  .mobile-footer a div {
+}
+
+.mobile-footer a div {
     font-size: 12px;
-  }
-  
-  .mobile-footer .p-button {
+}
+
+.mobile-footer .p-button {
     margin-bottom: 5px;
-  }
-  
-  .mobile-footer .p-button-rounded {
+}
+
+.mobile-footer .p-button-rounded {
     font-size: 24px;
-  }
-  
-  .floating_button{
+}
+
+.floating_button {
     right: 0;
     bottom: 100px;
     padding: 10px;
@@ -669,7 +671,17 @@ ul.p-dropdown-items {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
 
-    .menu_bar_custom{
+    .top_card {
+        min-width: 100px;
+        border-radius: 5px;
+    }
+
+    .border-start {
+        border: 1px solid transparent;
+        border-left: 1px solid red;
+    }
+
+    .menu_bar_custom {
         position: fixed !important;
         background: rgb(255, 255, 255);
         width: 100% !important;
@@ -683,11 +695,12 @@ ul.p-dropdown-items {
         padding-top: 5rem;
         margin-bottom: 100px !important;
     }
-    .card_basil{
+
+    .card_basil {
         width: 200px;
     }
 
-    .floating_button{
+    .floating_button {
         right: 0;
         bottom: 100px;
         padding: 10px;
@@ -723,6 +736,7 @@ ul.p-dropdown-items {
 .margin-r-5p {
     margin-right: 5px !important;
 }
+
 .margin-r-10p {
     margin-right: 10px !important;
 }
@@ -734,7 +748,12 @@ ul.p-dropdown-items {
 .height-250p {
     height: 250px;
 }
+
 .height-200p {
     height: 200px;
 }
-.rowC{display:flex; flex-direction:row;}
+
+.rowC {
+    display: flex;
+    flex-direction: row;
+}

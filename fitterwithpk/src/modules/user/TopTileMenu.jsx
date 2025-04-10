@@ -1,44 +1,47 @@
-import { useNavigate } from "react-router-dom";
-import { RENDER_URL } from "../../Utils/Urls";
+import React from 'react';
 
 const TopTileMenu = () => {
+  const menuItems = [
+    {
+      label: 'Daily Update',
+      icon: 'bi-calendar-plus',
+      to: '/daily-updates'
+    },
+    {
+      label: 'Weekly',
+      icon: 'bi-clock',
+      to: '/weekly-updates'
+    },
+    {
+      label: 'Guidelines',
+      icon: 'bi-info-circle',
+      to: '/guidelines'
+    },
+    {
+      label: 'Others',
+      icon: 'bi-info-circle',
+      to: '/'
+    }
+  ];
 
-    const navigate = useNavigate();
-
-    const TOP_MENU = [
-        {
-            label: 'Daily Update',
-            icon: 'pi pi-calendar-plus',
-            to: RENDER_URL.VIEW_DAILY_UPDATES
-        },
-        {
-            label: 'Weekly updates',
-            icon: 'pi pi-clock',
-            to: RENDER_URL.VIEW_WEEKLY_UPDATES
-        },
-        {
-            label: 'Guidelines',
-            icon: 'pi pi-info-circle',
-            to: ''
-        }
-    ]
-
-
-    return (
-        <div className="d-flex flex-nowrap overflow-auto" style={{ gap: "1rem", padding: "1rem" }}>
-            {TOP_MENU.map((element, idx) => (
-                <div key={idx} className="card" style={{ width: '80px', height: '80px', borderRadius: '12px', cursor: 'pointer' }} onClick={() => {
-                    navigate(element.to);
-                }} >
-                    <div className="card-body d-flex align-items-center justify-content-center" style={{ flexDirection: 'column' }}>
-                        <i className={`${element.icon} text-center`} style={{ fontSize: '1.1rem', color: '#888787' }} ></i>
-                        <span className="text-center " style={{ fontSize: 'x-small' }}>{element.label}</span>
-                    </div>
-                </div>
-            ))}
+  return (
+    <div className="d-flex gap-3 overflow-auto py-3 px-2 no-scrollbar justify-center text-center">
+     
+      {menuItems.map((item, idx) => (
+        <div className='card shadow top_card'>
+          <button
+            key={idx}
+            className="d-flex flex-column align-items-center justify-content-center bg-white rounded-3 shadow-sm p-3 border-0 menu-card"
+            style={{ minWidth: '80px', height: '80px' }}
+            onClick={() => window.location.href = item.to}
+          >
+            <i className={`${item.icon} text-secondary mb-1`} style={{ fontSize: '1.25rem' }}></i>
+            <span className="text-secondary" style={{ fontSize: '0.75rem' }}>{item.label}</span>
+          </button>
         </div>
-
-    )
+      ))}
+    </div>
+  );
 }
 
 export default TopTileMenu;

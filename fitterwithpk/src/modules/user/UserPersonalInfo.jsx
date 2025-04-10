@@ -1,85 +1,92 @@
-import React from "react";
+import React from 'react';
 
-const UserPersonalInfo = ({ client }) => {
+const UserPersonalInfo = () => {
+  const user = {
+    firstName: "Basil",
+    targetWeight: 70,
+    currentWeight: 75,
+  };
 
-    const user = {
-        FirstName: "Basil",
-        TargetWeight: 70,
-        CurrentWeight: 75,
-    };
+  const motivationalQuotes = [
+    "Push yourself because no one else is going to do it for you.",
+    "You are stronger than you think. Keep going.",
+    "Every workout counts. Progress over perfection.",
+    "Stay dedicated. It's not easy, but it's worth it.",
+  ];
 
-    const motivationalQuotes = [
-        "Push yourself because no one else is going to do it for you.",
-        "You are stronger than you think. Keep going.",
-        "Every workout counts. Progress over perfection.",
-        "Stay dedicated. It’s not easy, but it’s worth it.",
-    ];
+  const dailyComments = [
+    "Drink more water",
+    "Change 10 Push to 20 and reduce set count to 2"
+  ];
 
-    const dailyCommentFromTrainer = [
-        "Drink more water",
-        "Change 10 Push to 20 and reduce set count to 2"
-    ];
+  const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
 
-    const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
-
-    const today = new Date().toLocaleDateString();
-    return (
-        <div className="container mt-4">
-            <div className="mb-4">
-                <span className="text-dark">Welcome back <p className="text-center">{user.FirstName} 💪</p></span>
-            </div>
-
-            <hr></hr>
-            <div className="mb-4">
-                <span className="text-dark strong">Track Your Health</span>
-            </div>
-
-            <div className="row mb-4">
-                <div className="col-md-6 mb-3">
-                    <div className="card text-center p-4 shadow-sm">
-                        <h6 className="text-secondary">🎯 Target Weight</h6>
-                        <h3 className="text-primary">{user.TargetWeight} kg</h3>
-                    </div>
-                </div>
-
-                <div className="col-md-6 mb-3">
-                    <div className="card text-center p-4 shadow-sm">
-                        <h6 className="text-secondary">📊 Current Weight</h6>
-                        <h3 className="text-success">{user.CurrentWeight} kg</h3>
-                    </div>
-                </div>
-            </div>
-
-            <hr></hr>
-
-            {/* Motivation Card */}
-            <div className="card p-4 bg-light shadow-sm">
-                <h5 className="text-info">💡 Motivation for Today</h5>
-                <blockquote className="blockquote mt-2 mb-0">
-                    <p className="mb-1">{quote}</p>
-                    <footer className="blockquote-footer">Fitwith PK</footer>
-                </blockquote>
-            </div>
-
-
-            <div className="card p-4 bg-light shadow-sm">
-                <h5 className="text-danger">💡Comments</h5>
-                {
-                    Object.entries(dailyCommentFromTrainer).map(([index, element]) => {
-
-                        return <blockquote className="blockquote mt-2 mb-0">
-                            <p className="mb-1">{element}</p>
-                            <footer className="blockquote-footer">Fitwith PK</footer>
-                        </blockquote>
-
-                    })
-                }
-
-            </div>
-
+  return (
+    <div className="container mt-4">
+      <div className="py-4">
+        {/* Welcome Section */}
+        <div className="text-center mb-4">
+          <h1 className="h4 text-dark mb-2">Welcome back</h1>
+          <p className="h5 text-dark d-flex align-items-center justify-content-center gap-2 mb-0">
+            {user.firstName} <span className="fs-4">💪</span>
+          </p>
         </div>
-    )
 
+        {/* Weight Tracking Cards */}
+        <div className="row g-3 mb-4">
+          <div className="col-6">
+            <div className="card border-0 shadow-sm">
+              <div className="card-body text-center">
+                <i className="bi bi-bullseye text-primary mb-2" style={{ fontSize: '1.5rem' }}></i>
+                <p className="text-secondary small mb-1">Target Weight</p>
+                <p className="h5 text-primary mb-0">{user.targetWeight}kg</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-6">
+            <div className="card border-0 shadow-sm">
+              <div className="card-body text-center">
+                <i className="bi bi-graph-up text-success mb-2" style={{ fontSize: '1.5rem' }}></i>
+                <p className="text-secondary small mb-1">Current Weight</p>
+                <p className="h5 text-success mb-0">{user.currentWeight}kg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Motivation Card */}
+        <div className="card border-0 shadow-sm mb-4">
+          <div className="card-body">
+            <div className="d-flex align-items-center gap-2 mb-3">
+              <i className="bi bi-quote text-primary"></i>
+              <h2 className="h5 mb-0">Today's Motivation</h2>
+            </div>
+            <p className="text-secondary fst-italic mb-2">{quote}</p>
+            <p className="small text-muted mb-0">- Fitwith PK</p>
+          </div>
+        </div>
+
+        {/* Trainer Comments */}
+        <div className="card border-0 shadow-sm">
+          <div className="card-body">
+            <div className="d-flex align-items-center gap-2 mb-3">
+              <i className="bi bi-chat-left-text text-danger"></i>
+              <h2 className="h5 mb-0">Trainer Comments</h2>
+            </div>
+            <div className="d-flex flex-column gap-3">
+              {dailyComments.map((comment, index) => (
+                <div key={index} className="border-start border-3">
+                  <p className="text-secondary mb-1 ml-4">{comment}</p>
+                  <p className="small text-muted mb-0 ml-4">- Fitwith PK</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserPersonalInfo;
