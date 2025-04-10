@@ -6,6 +6,10 @@ import DailyUpdatesModal from "./DailyUpdatesModal";
 import EditWeeklyUpdates from "../user/EditWeeklyUpdates";
 import { Image } from "primereact/image";
 import { WEIGHT_UNIT } from "../../Utils/Constants";
+import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
+import UserMobileFooter from "../user/UserMobileFooter";
+import { RENDER_URL } from "../../Utils/Urls";
 
 const WeeklyUpdatesTable = ({ id, adminView }) => {
     const [data, setData] = useState([]);
@@ -13,12 +17,18 @@ const WeeklyUpdatesTable = ({ id, adminView }) => {
     const [selectedRow, setSelectedRow] = useState(null);
     const [showEdit, setShowEdit] = useState(false);
     const [editdata, setEditData] = useState({});
+    const navigate = useNavigate();
 
     const getData = () => {
         let reqParam = {};
         if (id) reqParam = { IdUser: id };
         getWeeklyUpdate(reqParam).then((res) => {
-            setData(res.data.data);
+
+            const updatedData = res.data.data.map((item, index) => ({
+                ...item,
+                WeekLabel: `Week ${index + 1}`,
+            }));
+            setData(updatedData);
         });
     };
 
@@ -35,17 +45,20 @@ const WeeklyUpdatesTable = ({ id, adminView }) => {
         return null; // No arrow for 0 difference
     };
 
-    const itemTemplate = (rowData) => {
+    const itemTemplate = (rowData, grid, index) => {
         if (!rowData) return null;
 
+        { console.log(index) }
+
         return (
+
             <div className="col-sm-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
-                <div className="card" style={{ width: "18rem" }}>
+                <div className="card" style={{ width: "90%" }}>
                     <div className="card-body">
 
-                        <div className="row bg-dark text-white mb-2">
+                        <div className="row mb-2">
                             <div className="col-12 text-center">
-                                {rowData.DataRange ? rowData.DataRange : "03-03-1993 - 03-03-2093"}
+                                {rowData.DataRange ? `${rowData.WeekLabel}` : `${rowData.WeekLabel}`}
                             </div>
                         </div>
 
@@ -158,6 +171,9 @@ const WeeklyUpdatesTable = ({ id, adminView }) => {
                             )}
                         </div>
 
+
+
+
                     </div>
                 </div>
             </div>
@@ -191,17 +207,26 @@ const WeeklyUpdatesTable = ({ id, adminView }) => {
                 />
             )}
             {!adminView && <UserSideBar />}
-            <div className="logo mb-3 text-center">
-                {!adminView && <h1>My Weekly Updates</h1>}
-            </div>
-            <div className="container">
+            <div className="container fit_app_section mt-2">
+                <div className="text-center">
+                    {!adminView && <h4>My Weekly Updates</h4>}
+                </div>
                 <DataView
                     value={data}
-                    itemTemplate={itemTemplate}
+                    itemTemplate={(rowData, layout, index) => itemTemplate(rowData, layout, index)}
                     layout="grid"
                     paginator
                     rows={9}
                 />
+
+                <div className="fixed floating_button">
+                    <Button icon="pi pi-plus" severity="secondary" style={{ borderRadius: '50%' }} onClick={() => {
+                        navigate(RENDER_URL.WEEKLY_UPDATES)
+                    }} />
+                </div>
+
+                {!adminView && <UserMobileFooter />}
+
             </div>
         </>
     );

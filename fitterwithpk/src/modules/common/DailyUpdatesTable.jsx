@@ -4,11 +4,17 @@ import { getDailyUpdate } from "../user/UserServices";
 import UserSideBar from "../user/UserSideBar";
 import EditDailyUpdates from "../user/EditDailyUpdate";
 import { FaPen, FaDirections, FaMoon, FaTint, FaWeightHanging, FaCheckCircle, FaTimesCircle, FaStar } from "react-icons/fa";
+import UserMobileFooter from "../user/UserMobileFooter";
+import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
+import { RENDER_URL } from "../../Utils/Urls";
 
 const DailyUpdatesTable = ({ id, adminView }) => {
     const [data, setData] = useState([]);
     const [showEdit, setShowEdit] = useState(false);
     const [editdata, setEditData] = useState({});
+
+    const navigate = useNavigate();
 
     const getData = () => {
         let reqParam = {};
@@ -109,7 +115,7 @@ const DailyUpdatesTable = ({ id, adminView }) => {
             <div className="logo mb-3 text-center">
                 {!adminView && <h1>My Daily Updates</h1>}
             </div>
-            <div className="container">
+            <div className="container fit_app_section">
                 <DataView
                     value={data}
                     itemTemplate={itemTemplate}
@@ -117,6 +123,15 @@ const DailyUpdatesTable = ({ id, adminView }) => {
                     paginator
                     rows={9}
                 />
+
+                <div className="fixed floating_button">
+                    <Button icon="pi pi-plus" severity="secondary" style={{ borderRadius: '50%' }} onClick={() => {
+                        navigate(RENDER_URL.DAILY_UPDATES)
+                    }} />
+                </div>
+
+                {!adminView && <UserMobileFooter />}
+
             </div>
         </>
     );

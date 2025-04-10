@@ -25,13 +25,14 @@ const UserPersonalInfo = ({ client }) => {
     const today = new Date().toLocaleDateString();
     return (
         <div className="container mt-4">
-
             <div className="mb-4">
-                <span className="text-dark strong">Welcome back <p className="text-center h4">{user.FirstName} 💪</p></span>
-
-                <p className="text-muted">{today}</p>
+                <span className="text-dark">Welcome back <p className="text-center">{user.FirstName} 💪</p></span>
             </div>
 
+            <hr></hr>
+            <div className="mb-4">
+                <span className="text-dark strong">Track Your Health</span>
+            </div>
 
             <div className="row mb-4">
                 <div className="col-md-6 mb-3">
@@ -48,6 +49,8 @@ const UserPersonalInfo = ({ client }) => {
                     </div>
                 </div>
             </div>
+
+            <hr></hr>
 
             {/* Motivation Card */}
             <div className="card p-4 bg-light shadow-sm">

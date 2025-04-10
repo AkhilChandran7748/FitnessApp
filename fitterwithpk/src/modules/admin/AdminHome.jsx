@@ -8,7 +8,7 @@ const AdminHome = () => {
     return (<>
         <AdminSideBar />
         <div className="container fit_app_section">
-            {/*   <AdminTiles /> */}
+            <AdminTiles />
             <div className="row">
                 <ClientList />
             </div>
