@@ -9,7 +9,7 @@ const AdminHome = () => {
         <AdminSideBar />
         <div className="container fit_app_section">
             <AdminTiles />
-            <div className="row">
+            <div className="row mt-3">
                 <ClientList />
             </div>
         </div>

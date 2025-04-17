@@ -1,11 +1,12 @@
 import React from 'react';
+import { RENDER_URL } from '../../Utils/Urls';
 
 const UserMobileFooter = () => {
   const menuItems = [
-    { icon: 'bi-house', label: 'Home', url: '/' },
-    { icon: 'bi-calendar', label: 'Updates', url: '/updates' },
-    { icon: 'bi-person', label: 'Profile', url: '/profile' },
-    { icon: 'bi-gear', label: 'Settings', url: '/settings' },
+    { icon: 'bi-house', label: 'Home', url: RENDER_URL.STAFF_DASHBOARD },
+    { icon: 'bi-calendar', label: 'Updates', url: RENDER_URL.VIEW_WEEKLY_UPDATES },
+    { icon: 'bi-person', label: 'Plan', url: RENDER_URL.VIEW_DIET_PLAN },
+    { icon: 'bi-gear', label: 'Settings', url: RENDER_URL.STAFF_DASHBOARD },
   ];
 
   return (

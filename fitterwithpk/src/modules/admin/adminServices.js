@@ -20,3 +20,13 @@ export const approveUser = params => {
     });
 };
 
+export const updateDietPlan = params => {
+    return httpCall({
+        url: API_URL.ADD_DIET_PLAN,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+

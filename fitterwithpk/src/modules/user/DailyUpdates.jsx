@@ -169,10 +169,10 @@ const DailyUpdates = ({ tabChange }) => {
                                                 name="diet"
                                                 control={control}
                                                 render={({ field, fieldState }) => (
-                                                    <div >
-                                                        <RadioButton className="form-control" inputId="dyes" name="diet" value="Yes" onChange={(e) => field.onChange(e.value)} checked={field.value === 'Yes'} />
+                                                    <div className="p-3">
+                                                        <RadioButton inputId="dyes" name="diet" value="Yes" onChange={(e) => field.onChange(e.value)} checked={field.value === 'Yes'} />
                                                         <label htmlFor="dyes" className="ml-2">Yes</label>
-                                                        <RadioButton inputId="dno" name="diet" value="No" onChange={(e) => field.onChange(e.value)} checked={field.value === "No"} />
+                                                        <RadioButton className="ml-2" inputId="dno" name="diet" value="No" onChange={(e) => field.onChange(e.value)} checked={field.value === "No"} />
                                                         <label htmlFor="dno" className="ml-2">No</label>
 
                                                     </div>
@@ -180,15 +180,15 @@ const DailyUpdates = ({ tabChange }) => {
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="diet">Workpout Follow</label>
+                                            <label htmlFor="workout">Workout Follow</label>
                                             <Controller
                                                 name="workout"
                                                 control={control}
                                                 render={({ field, fieldState }) => (
-                                                    <div >
+                                                    <div className="p-3">
                                                         <RadioButton inputId="wyes" name="diet" value="Yes" onChange={(e) => field.onChange(e.value)} checked={field.value === 'Yes'} />
                                                         <label htmlFor="wyes" className="ml-2">Yes</label>
-                                                        <RadioButton inputId="wno" name="diet" value="No" onChange={(e) => field.onChange(e.value)} checked={field.value === "No"} />
+                                                        <RadioButton inputId="wno" className="ml-2" name="diet" value="No" onChange={(e) => field.onChange(e.value)} checked={field.value === "No"} />
                                                         <label htmlFor="wno" className="ml-2">No</label>
 
                                                     </div>
@@ -198,9 +198,9 @@ const DailyUpdates = ({ tabChange }) => {
 
                                         <hr></hr>
 
-                                        <div className="row shadow m-2">
-                                            <Button label="Log Updates" className="col-sm-6 col-md-6 col-lg-12" severity="secondary" />
-                                            <Button label="Cancel" className="col-sm-6 col-md-6 col-lg-12" severity="danger" onClick={() => reset()} />
+                                        <div className="row shadow ml-2 mr-2">
+                                            <Button label="Log Updates" className="col-sm-6 col-md-6 col-lg-12 mt-2" severity="secondary" />
+                                            <Button label="Cancel" className="col-sm-6 col-md-6 col-lg-12 mt-2" severity="danger" onClick={() => reset()} />
                                         </div>
                                     </div>
 

@@ -9,8 +9,10 @@ const DailyUpdatesModal = ({ visible, data = [], setVisible, selectedData }) => 
     useEffect(() => {
         setIndex(data.findIndex((i) => i.DataRange === selectedData.DataRange) || 0)
     }, [data, selectedData, visible])
+    
     console.log(index, 'data');
-  
+    
+
     const dataTemplate = (item) => {
         let images = item.FileName ? item.FileName.split(',') : []
         return (

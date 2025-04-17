@@ -124,11 +124,20 @@ const DailyUpdatesTable = ({ id, adminView }) => {
                     rows={9}
                 />
 
-                <div className="fixed floating_button">
-                    <Button icon="pi pi-plus" severity="secondary" style={{ borderRadius: '50%' }} onClick={() => {
-                        navigate(RENDER_URL.DAILY_UPDATES)
-                    }} />
-                </div>
+                {!adminView ?
+                    //for client to add his/her daily updates 
+                    <div className="fixed floating_button">
+                        <Button icon="pi pi-plus" severity="secondary" style={{ borderRadius: '50%' }} onClick={() => {
+                            navigate(RENDER_URL.DAILY_UPDATES)
+                        }} />
+                    </div> :
+                    //for admin side to add diet plans and workout plans for the user
+                    <div className="fixed floating_button">
+                        <Button icon="pi pi-plus" severity="danger" style={{ borderRadius: '50%' }} onClick={() => {
+                            navigate(RENDER_URL.ADMIN_ADD_DIET, { state: { IdUser: id, adminView: adminView } })
+                        }} />
+                    </div>
+                }
 
                 {!adminView && <UserMobileFooter />}
 

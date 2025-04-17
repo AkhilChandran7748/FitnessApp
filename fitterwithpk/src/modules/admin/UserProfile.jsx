@@ -7,6 +7,8 @@ import AdminSideBar from "./AdminSideBar";
 import DailyUpdatesTable from "../common/DailyUpdatesTable";
 import WeeklyUpdatesTable from "../common/WeeklyUpdatesTable";
 import { getClientList } from "./adminServices";
+import WeeklyUpdatesTableNew from "../common/WeeklyUpdatesTableNew";
+import ViewDietWork from "../common/ViewDietWork";
 const UserProfile = () => {
     const { id } = useParams();
 
@@ -45,7 +47,10 @@ const UserProfile = () => {
                         <DailyUpdatesTable id={id} adminView={true} />
                     </TabPanel>
                     <TabPanel header="Weekly Updates">
-                        <WeeklyUpdatesTable id={id} adminView={true} />
+                        <WeeklyUpdatesTableNew id={id} adminView={true} />
+                    </TabPanel>
+                    <TabPanel header="Previous Plans">
+                        <ViewDietWork id={id} adminView={true} />
                     </TabPanel>
                 </TabView>
             </div>

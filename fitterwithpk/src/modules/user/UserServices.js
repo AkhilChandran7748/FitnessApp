@@ -42,4 +42,37 @@ export const getWeeklyUpdate = params => {
     });
 };
 
+export const getWeeklyGalleryList = params => {
+    return httpCall({
+        url: API_URL.GET_WEEKLY_GALLERY,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+
+export const getProfileDetails = params => {
+    return httpCall({
+        url: API_URL.GET_PROFILE_DETAILS,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+
+export const getDietPlan = params => {
+    return httpCall({
+        url: API_URL.GET_DIET_PLAN,
+        method: "post",
+        data: params
+    }).then(response => {
+        return response;
+    });
+};
+
+
 

@@ -102,7 +102,7 @@ const WeeklyUpdates = ({ tabChange }) => {
                                             rules={{ required: 'Date is required.' }}
                                             render={({ field, fieldState }) => (
                                                 <div>
-                                                    <Calendar placeholder="Select Date Range" value={field.value} onChange={(e) => field.onChange(e.value)} selectionMode="range" readOnlyInput hideOnRangeSelection />
+                                                    <Calendar className="form-control" placeholder="Select Date Range" value={field.value} onChange={(e) => field.onChange(e.value)} selectionMode="range" readOnlyInput hideOnRangeSelection />
 
                                                     {/* <InputText placeholder="Full Name" id={field.name} value={field.value} className={`form-control ${classNames({ 'p-invalid': fieldState.error })}`} onChange={(e) => field.onChange(e.target.value)} /> */}
                                                     <div>{getFormErrorMessage(field.name)}</div>

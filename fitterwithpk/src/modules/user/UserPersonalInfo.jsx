@@ -1,11 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getProfileDetails } from './UserServices';
 
 const UserPersonalInfo = () => {
-  const user = {
-    firstName: "Basil",
-    targetWeight: 70,
-    currentWeight: 75,
-  };
+
+  const [user, setUser] = useState({
+    firstName: "---",
+    targetWeight: '--',
+    currentWeight: '--',
+  });
+
+  useEffect(() => {
+    getloggedProfileDetails();
+  }, []);
+
+  const getloggedProfileDetails = () => {
+
+    getProfileDetails().then((result) => {
+      if (result.status === 200) {
+        const { FirstName, EmailID, MainBodyAttributes, Weight } = result.data?.data;
+
+        const _userobj = {
+          firstName: FirstName,
+          targetWeight: JSON.parse(MainBodyAttributes).target_weight,
+          currentWeight: Weight,
+        }
+        setUser(_userobj);
+      }
+
+    }).catch((err) => {
+      console.log(err);
+    });
+
+  }
+
+
 
   const motivationalQuotes = [
     "Push yourself because no one else is going to do it for you.",
@@ -28,7 +56,7 @@ const UserPersonalInfo = () => {
         <div className="text-center mb-4">
           <h1 className="h4 text-dark mb-2">Welcome back</h1>
           <p className="h5 text-dark d-flex align-items-center justify-content-center gap-2 mb-0">
-            {user.firstName} <span className="fs-4">💪</span>
+            {user?.firstName} <span className="fs-4">💪</span>
           </p>
         </div>
 
@@ -39,7 +67,7 @@ const UserPersonalInfo = () => {
               <div className="card-body text-center">
                 <i className="bi bi-bullseye text-primary mb-2" style={{ fontSize: '1.5rem' }}></i>
                 <p className="text-secondary small mb-1">Target Weight</p>
-                <p className="h5 text-primary mb-0">{user.targetWeight}kg</p>
+                <p className="h5 text-primary mb-0">{user?.targetWeight}kg</p>
               </div>
             </div>
           </div>
@@ -49,7 +77,7 @@ const UserPersonalInfo = () => {
               <div className="card-body text-center">
                 <i className="bi bi-graph-up text-success mb-2" style={{ fontSize: '1.5rem' }}></i>
                 <p className="text-secondary small mb-1">Current Weight</p>
-                <p className="h5 text-success mb-0">{user.currentWeight}kg</p>
+                <p className="h5 text-success mb-0">{user?.currentWeight}kg</p>
               </div>
             </div>
           </div>

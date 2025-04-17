@@ -73,7 +73,7 @@ const EditDailyUpdates = ({ visible, setVisible, data, reload }) => {
         return errors[name] ? <small className="p-error" style={{ marginBottom: '10px' }}>{errors[name].message}</small> : <small className="p-error" style={{ marginBottom: '10px' }}>&nbsp;</small>;
     };
     return (
-        <Dialog position={'top'} header={" Edit Daily Updates"} visible={visible} style={{ width: '50vw' }} onHide={() => { if (!visible) return; setVisible(false); }}>
+        <Dialog position={'top'} header={" Edit Daily Updates"} visible={visible} style={{ width: '100%' }} onHide={() => { if (!visible) return; setVisible(false); }}>
             <div className="container">
                 <Toast ref={toast} />
                 {/* <GuestSideBar currentPath={currentPath} /> */}
